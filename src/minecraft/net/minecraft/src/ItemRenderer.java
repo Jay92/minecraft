@@ -325,10 +325,10 @@ public class ItemRenderer
             GL11.glRotatef(-f24 * 80F, 1.0F, 0.0F, 0.0F);
             f12 = 0.4F;
             GL11.glScalef(f12, f12, f12);
-            if(entityplayersp.func_35205_Y() > 0)
+            if(entityplayersp.func_35205_Y() > 0 || powney.isBlocking)
             {
                 EnumAction enumaction1 = itemstack.getItemUseAction();
-                if(enumaction1 == EnumAction.block)
+                if(powney.isBlocking && mc.thePlayer.getSwingProgress(f) == 0)
                 {
                     GL11.glTranslatef(-0.5F, 0.2F, 0.0F);
                     GL11.glRotatef(30F, 0.0F, 1.0F, 0.0F);

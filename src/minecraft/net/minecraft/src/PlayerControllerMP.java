@@ -209,6 +209,7 @@ public class PlayerControllerMP extends PlayerController
         {
             currentPlayerItem = i;
             netClientHandler.addToSendQueue(new Packet16BlockItemSwitch(currentPlayerItem));
+            powney.isBlocking = false;
         }
     }
 
@@ -321,9 +322,21 @@ public class PlayerControllerMP extends PlayerController
     public void onStoppedUsingItem(EntityPlayer entityplayer)
     {
         syncCurrentPlayItem();
-        //Block hack, one click food eat
-        //netClientHandler.addToSendQueue(new Packet14BlockDig(5, 0, 0, 0, 255));
-        super.onStoppedUsingItem(entityplayer);
+        //Block hack
+        if(powney.blockhack && mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemSword)
+        {
+        	//don't send packet
+        	super.onStoppedUsingItem(entityplayer);
+        	powney.isBlocking = true;
+        }
+        else
+        {
+        	netClientHandler.addToSendQueue(new Packet14BlockDig(5, 0, 0, 0, 255));
+        	super.onStoppedUsingItem(entityplayer);
+        	powney.isBlocking = false;
+        }
+        
+        
     }
 
     public boolean func_35642_f()
