@@ -50,7 +50,22 @@ public class GuiIngame extends Gui
 
     public void renderGameOverlay(float f, boolean flag, int i, int j)
     {
-        ScaledResolution scaledresolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
+    	if(powney.step)
+    	{
+    		if(mc.thePlayer.stepHeight != (float) powney.stepheight)
+    		{
+    			mc.thePlayer.stepHeight = (float) powney.stepheight;
+    		}
+    	}
+    	else
+    	{
+    		if(mc.thePlayer.stepHeight != 0.5F)
+    		{
+    			mc.thePlayer.stepHeight = 0.5F;
+    		}
+    	}
+        
+    	ScaledResolution scaledresolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
         int k = scaledresolution.getScaledWidth();
         int l = scaledresolution.getScaledHeight();
         FontRenderer fontrenderer = mc.fontRenderer;
