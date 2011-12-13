@@ -94,6 +94,14 @@ public class GuiIngame extends Gui
     		}
     	}
     	//End Step Hack
+    	
+    	//Knockback
+    	if(isKeyPressed(Keyboard.KEY_K))
+    	{
+    		powney.knockback = !powney.knockback;
+    	}
+    	//End Knockback
+    	
         
     	ScaledResolution scaledresolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
         int k = scaledresolution.getScaledWidth();

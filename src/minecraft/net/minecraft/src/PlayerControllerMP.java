@@ -255,7 +255,19 @@ public class PlayerControllerMP extends PlayerController
     public void attackEntity(EntityPlayer entityplayer, Entity entity)
     {
         syncCurrentPlayItem();
+        
+        //Knockback
+        if(powney.knockback)
+        {
+        	netClientHandler.addToSendQueue(new Packet19EntityAction(mc.thePlayer, 4)); //Send sprint packet
+            netClientHandler.addToSendQueue(new Packet7UseEntity(entityplayer.entityId, entity.entityId, 1));
+        }
+        else
+        {
         netClientHandler.addToSendQueue(new Packet7UseEntity(entityplayer.entityId, entity.entityId, 1));
+        }
+        //End Knockback
+        
         entityplayer.attackTargetEntityWithCurrentItem(entity);
     }
 
@@ -309,7 +321,8 @@ public class PlayerControllerMP extends PlayerController
     public void onStoppedUsingItem(EntityPlayer entityplayer)
     {
         syncCurrentPlayItem();
-        netClientHandler.addToSendQueue(new Packet14BlockDig(5, 0, 0, 0, 255));
+        //Block hack, one click food eat
+        //netClientHandler.addToSendQueue(new Packet14BlockDig(5, 0, 0, 0, 255));
         super.onStoppedUsingItem(entityplayer);
     }
 
