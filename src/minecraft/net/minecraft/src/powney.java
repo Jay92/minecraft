@@ -7,6 +7,7 @@ public class powney {
 	public static boolean knockback = false;
 	public static boolean blockhack = true;
 	public static boolean isBlocking = false;
+	public static boolean fraps = false;
 	
 	public powney(){
 		

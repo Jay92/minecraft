@@ -36,7 +36,6 @@ public class GuiIngame extends Gui
     private boolean recordIsPlaying;
     public float damageGuiPartialTime;
     float prevVignetteBrightness;
-    private boolean keyPressed[];
 
     public GuiIngame(Minecraft minecraft)
     {
@@ -49,26 +48,6 @@ public class GuiIngame extends Gui
         recordIsPlaying = false;
         prevVignetteBrightness = 1.0F;
         mc = minecraft;       
-        keyPressed = new boolean[256];
-    }
-    
-    private boolean isKeyPressed(int i)
-    {
-    	   		
-	    	if(mc.currentScreen != null)
-	    	{
-	    		return false;
-	    	}
-	    	
-	    	if(Keyboard.isKeyDown(i) != keyPressed[i])
-	    	{
-	    		return keyPressed[i] = !keyPressed[i];
-	    	}
-	    	else
-	    	{
-	    		return false;
-	    	}
-    	
     }
 
     public void renderGameOverlay(float f, boolean flag, int i, int j)
@@ -78,11 +57,16 @@ public class GuiIngame extends Gui
     	{
     		mc.displayGuiScreen(new GuiPowneyConfig(mc.currentScreen, mc.powneySettings));
     	}
+    	//End Powney Config
     	
     	//Step Hack
     	if(mc.powneySettings.keyBindStepHack.isPressed())
     	{
     		powney.step = !powney.step;
+    		if(!powney.fraps)
+    		{
+    			mc.thePlayer.addChatMessage("Step: " + powney.step);
+    		}
     	}
     	
     	if(powney.step)
@@ -105,6 +89,10 @@ public class GuiIngame extends Gui
     	if(mc.powneySettings.keyBindKnockback.isPressed())
     	{
     		powney.knockback = !powney.knockback;
+    		if(!powney.fraps)
+    		{
+    			mc.thePlayer.addChatMessage("Knockback: " + powney.knockback);
+    		}
     	}
     	//End Knockback
     	

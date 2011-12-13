@@ -22,20 +22,6 @@ public class PowneySettings
     public KeyBinding keyBindings[];
     protected Minecraft mc;
     private File optionsFile;
-    public int difficulty;
-    public boolean hideGUI;
-    public int thirdPersonView;
-    public boolean showDebugInfo;
-    public String lastServer;
-    public boolean noclip;
-    public boolean smoothCamera;
-    public boolean debugCamEnable;
-    public float noclipRate;
-    public float debugCamRate;
-    public float fovSetting;
-    public float gammaSetting;
-    public int guiScale;
-    public int field_41087_P;
 
     public PowneySettings(Minecraft minecraft, File file)
     {
