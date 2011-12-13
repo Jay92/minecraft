@@ -8,6 +8,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
 import net.minecraft.client.Minecraft;
+
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 // Referenced classes of package net.minecraft.src:
@@ -34,6 +36,7 @@ public class GuiIngame extends Gui
     private boolean recordIsPlaying;
     public float damageGuiPartialTime;
     float prevVignetteBrightness;
+    private boolean keyPressed[];
 
     public GuiIngame(Minecraft minecraft)
     {
@@ -45,11 +48,37 @@ public class GuiIngame extends Gui
         recordPlayingUpFor = 0;
         recordIsPlaying = false;
         prevVignetteBrightness = 1.0F;
-        mc = minecraft;
+        mc = minecraft;       
+        keyPressed = new boolean[256];
+    }
+    
+    private boolean isKeyPressed(int i)
+    {
+    	   		
+	    	if(mc.currentScreen != null)
+	    	{
+	    		return false;
+	    	}
+	    	
+	    	if(Keyboard.isKeyDown(i) != keyPressed[i])
+	    	{
+	    		return keyPressed[i] = !keyPressed[i];
+	    	}
+	    	else
+	    	{
+	    		return false;
+	    	}
+    	
     }
 
     public void renderGameOverlay(float f, boolean flag, int i, int j)
     {
+    	//Step Hack
+    	if(isKeyPressed(Keyboard.KEY_P))
+    	{
+    		powney.step = !powney.step;
+    	}
+    	
     	if(powney.step)
     	{
     		if(mc.thePlayer.stepHeight != (float) powney.stepheight)
@@ -64,6 +93,7 @@ public class GuiIngame extends Gui
     			mc.thePlayer.stepHeight = 0.5F;
     		}
     	}
+    	//End Step Hack
         
     	ScaledResolution scaledresolution = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
         int k = scaledresolution.getScaledWidth();
