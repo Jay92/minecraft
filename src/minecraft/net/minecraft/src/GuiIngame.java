@@ -73,8 +73,14 @@ public class GuiIngame extends Gui
 
     public void renderGameOverlay(float f, boolean flag, int i, int j)
     {
+    	//Powney Config
+    	if(mc.powneySettings.keyBindConfig.isPressed())
+    	{
+    		mc.displayGuiScreen(new GuiPowneyConfig(mc.currentScreen, mc.powneySettings));
+    	}
+    	
     	//Step Hack
-    	if(isKeyPressed(Keyboard.KEY_P))
+    	if(mc.powneySettings.keyBindStepHack.isPressed())
     	{
     		powney.step = !powney.step;
     	}
@@ -96,7 +102,7 @@ public class GuiIngame extends Gui
     	//End Step Hack
     	
     	//Knockback
-    	if(isKeyPressed(Keyboard.KEY_K))
+    	if(mc.powneySettings.keyBindKnockback.isPressed())
     	{
     		powney.knockback = !powney.knockback;
     	}

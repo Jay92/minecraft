@@ -72,6 +72,7 @@ import net.minecraft.src.OpenGlCapsChecker;
 import net.minecraft.src.OpenGlHelper;
 import net.minecraft.src.PlayerController;
 import net.minecraft.src.PlayerControllerCreative;
+import net.minecraft.src.PowneySettings;
 import net.minecraft.src.Profiler;
 import net.minecraft.src.ProfilerResult;
 import net.minecraft.src.RenderBlocks;
@@ -161,6 +162,7 @@ public abstract class Minecraft
     public ModelBiped playerModelBiped;
     public MovingObjectPosition objectMouseOver;
     public GameSettings gameSettings;
+    public PowneySettings powneySettings;
     protected MinecraftApplet mcApplet;
     public SoundManager sndManager;
     public MouseHelper mouseHelper;
@@ -302,6 +304,7 @@ public abstract class Minecraft
         mcDataDir = getMinecraftDir();
         saveLoader = new SaveConverterMcRegion(new File(mcDataDir, "saves"));
         gameSettings = new GameSettings(this, mcDataDir);
+        powneySettings = new PowneySettings(this, mcDataDir);
         texturePackList = new TexturePackList(this, mcDataDir);
         renderEngine = new RenderEngine(texturePackList, gameSettings);
         loadScreen();

@@ -85,10 +85,6 @@ public class TileEntityMobSpawner extends TileEntity
                     updateDelay();
                     return;
                 }
-                if(entityliving == null)
-                {
-                    continue;
-                }
                 double d3 = (double)xCoord + (worldObj.rand.nextDouble() - worldObj.rand.nextDouble()) * 4D;
                 double d4 = (yCoord + worldObj.rand.nextInt(3)) - 1;
                 double d5 = (double)zCoord + (worldObj.rand.nextDouble() - worldObj.rand.nextDouble()) * 4D;
